@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Equipos</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMpE3PvRzpvBg6mHcoTf2u5iT8kz4VFYiEo+RJf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
@@ -16,11 +17,73 @@
             <ul>
                 <li><a href="../panel/dashboard.html"><i class="fas fa-home"></i> Inicio</a></li>
                 <li><a href="../busqueda/search.html"><i class="fas fa-search"></i> Buscar</a></li>
-                <li><a href="../manage_eqp/manage_equipment.html"><i class="fas fa-tasks"></i> Agregar Equipos</a></li>
+                <li><a href="../manage_gst/manage_gestion.html"><i class="fas fa-tasks"></i> Gestionar Equipos</a></li>
                 <li class="sidebar-icon" onclick="toggleSidebar()"><i class="fas fa-bars"></i></li>
             </ul>
         </nav>
     </header>
+
+    <main>
+        <div class="container">
+            <h2>Gestión de Equipos</h2>
+            <form id="equipmentForm">
+                <div class="form-group">
+                    <label for="serialNumber">Número de Serie:</label>
+                    <input type="text" id="serialNumber" name="serialNumber" pattern="\d+" title="Ingrese solo números" required>
+                    <span class="error-message" id="serialNumberError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="equipmentName">Nombre del Equipo:</label>
+                    <input type="text" id="equipmentName" name="equipmentName" pattern="[A-Za-z0-9 ]+" title="Ingrese solo letras y números" required>
+                    <span class="error-message" id="equipmentNameError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="acquisitionDate">Fecha de Adquisición:</label>
+                    <input type="date" id="acquisitionDate" name="acquisitionDate" required>
+                    <span class="error-message" id="acquisitionDateError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="status">Estado:</label>
+                    <select id="status" name="status" required>
+                        <option value="">Seleccione un estado</option>
+                        <option value="activo">Activo</option>
+                        <option value="mantenimiento">En Mantenimiento</option>
+                        <option value="baja">Dado de Baja</option>
+                    </select>
+                    <span class="error-message" id="statusError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="department">Departamento:</label>
+                    <input type="text" id="department" name="department" pattern="[A-Za-z0-9 ]+" title="Ingrese solo letras y números" required>
+                    <span class="error-message" id="departmentError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="assignee">Asignar a:</label>
+                    <input type="text" id="assignee" name="assignee" pattern="[A-Za-z ]+" title="Ingrese solo letras" required>
+                    <span class="error-message" id="assigneeError"></span>
+                </div>
+                <button type="submit">Agregar Equipo</button>
+            </form>
+        </div>
+
+        <div class="container">
+            <h2>Lista de Equipos</h2>
+            <table id="equipmentTable">
+                <thead>
+                    <tr>
+                        <th>Número de Serie</th>
+                        <th>Nombre del Equipo</th>
+                        <th>Fecha de Adquisición</th>
+                        <th>Estado</th>
+                        <th>Departamento</th>
+                        <th>Asignado a</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </main>
 
     <aside id="sidebar" class="sidebar">
         <div class="close-btn" onclick="toggleSidebar()">×</div>
@@ -32,25 +95,6 @@
         <a href="../login/login.html">Salir</a>
         <hr>
     </aside>
-
-    <div class="container">
-        <h2>Gestión de Equipos</h2>
-        <table id="equipmentTable">
-            <thead>
-                <tr>
-                    <th>Número de Serie</th>
-                    <th>Nombre del Equipo</th>
-                    <th>Fecha de Adquisición</th>
-                    <th>Estado</th>
-                    <th>Departamento</th>
-                    <th>Asignar a</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
 
     <div id="editModal" class="modal">
         <div class="modal-content">
@@ -72,10 +116,9 @@
                 <div class="form-group">
                     <label for="editStatus">Estado:</label>
                     <select id="editStatus" name="editStatus" required>
-                        <option value="Disponible">Disponible</option>
-                        <option value="En uso">En uso</option>
-                        <option value="En mantenimiento">En mantenimiento</option>
-                        <option value="Retirado">Retirado</option>
+                        <option value="activo">Activo</option>
+                        <option value="mantenimiento">En Mantenimiento</option>
+                        <option value="baja">Dado de Baja</option>
                     </select>
                 </div>
                 <div class="form-group">
