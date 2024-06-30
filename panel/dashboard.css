@@ -18,7 +18,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
-
 header {
     background-color: #b10707;
     display: flex;
@@ -54,6 +53,7 @@ header .sidebar-icon {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1001; /* Asegura que esté por encima de otros elementos */
 }
+
 header nav ul {
     display: flex;
     list-style: none;
@@ -71,10 +71,10 @@ header nav ul li a {
     font-weight: bold;
     transition: color 0.3s;
 }
+
 header nav ul li a:hover {
     color: #ffcc00;
 }
-
 
 .sidebar {
     display: none;
@@ -219,5 +219,60 @@ footer .contacto p {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Añade esta sección al final de tu archivo CSS */
+
+@media only screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header nav {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    header nav a {
+        margin: 10px 0;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    main {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cards-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .card {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    footer nav.footer-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    footer nav.footer-nav a {
+        margin: 5px 0;
+    }
+
+    .modal-content {
+        width: 90%;
     }
 }
