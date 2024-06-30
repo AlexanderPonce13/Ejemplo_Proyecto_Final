@@ -1,90 +1,85 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const equipmentTable = document.getElementById("equipmentTable").getElementsByTagName("tbody")[0];
-    let equipmentData = JSON.parse(localStorage.getItem("equipmentList")) || [];
+document.addEventListener('DOMContentLoaded', function() {
+    const editModal = document.getElementById('editModal');
+    const closeModalBtn = editModal.querySelector('.close-btn');
+    const editForm = document.getElementById('editForm');
+    const equipmentTable = document.getElementById('equipmentTable').getElementsByTagName('tbody')[0];
 
-    const renderTable = () => {
-        equipmentTable.innerHTML = "";
-        equipmentData.forEach((item, index) => {
-            const row = equipmentTable.insertRow();
-            row.insertCell(0).textContent = item.serialNumber;
-            row.insertCell(1).textContent = item.equipmentName;
-            row.insertCell(2).textContent = item.acquisitionDate;
-            row.insertCell(3).textContent = item.status;
-            row.insertCell(4).textContent = item.department;
-            row.insertCell(5).textContent = item.assignee;
-            const actionsCell = row.insertCell(6);
-            const editButton = document.createElement("button");
-            editButton.textContent = "Editar";
-            editButton.addEventListener("click", () => editEquipment(index));
-            actionsCell.appendChild(editButton);
-            const deleteButton = document.createElement("button");
-            deleteButton.textContent = "Eliminar";
-            deleteButton.addEventListener("click", () => deleteEquipment(index));
-            actionsCell.appendChild(deleteButton);
-        });
-    };
-
-    const editEquipment = (index) => {
-        const equipment = equipmentData[index];
-        document.getElementById('editSerialNumber').value = equipment.serialNumber;
-        document.getElementById('editEquipmentName').value = equipment.equipmentName;
-        document.getElementById('editAcquisitionDate').value = equipment.acquisitionDate;
-        document.getElementById('editStatus').value = equipment.status;
-        document.getElementById('editDepartment').value = equipment.department;
-        document.getElementById('editAssignee').value = equipment.assignee;
-        document.getElementById('editModal').style.display = 'block';
-
-        const saveChanges = () => {
-            equipmentData[index] = {
-                serialNumber: document.getElementById('editSerialNumber').value,
-                equipmentName: document.getElementById('editEquipmentName').value,
-                acquisitionDate: document.getElementById('editAcquisitionDate').value,
-                status: document.getElementById('editStatus').value,
-                department: document.getElementById('editDepartment').value,
-                assignee: document.getElementById('editAssignee').value
-            };
-            localStorage.setItem("equipmentList", JSON.stringify(equipmentData));
-            renderTable();
-            document.getElementById('editModal').style.display = 'none';
-            updateStats();
-        };
-
-        document.getElementById('editForm').onsubmit = (e) => {
-            e.preventDefault();
-            saveChanges();
-        };
-    };
-
-    const deleteEquipment = (index) => {
-        if (confirm("¿Está seguro de que desea eliminar este equipo?")) {
-            equipmentData.splice(index, 1);
-            localStorage.setItem("equipmentList", JSON.stringify(equipmentData));
-            renderTable();
-            updateStats();
-        }
-    };
-
-    document.querySelector('.close-btn').addEventListener('click', () => {
-        document.getElementById('editModal').style.display = 'none';
+    // Cerrar el modal al hacer clic en la "x"
+    closeModalBtn.addEventListener('click', function() {
+        editModal.style.display = 'none';
     });
 
-    window.onclick = (event) => {
-        if (event.target == document.getElementById('editModal')) {
-            document.getElementById('editModal').style.display = 'none';
+    // Cerrar el modal al hacer clic fuera del contenido del modal
+    window.addEventListener('click', function(event) {
+        if (event.target === editModal) {
+            editModal.style.display = 'none';
+        }
+    });
+
+    // Lógica para cargar los datos en la tabla
+    const equipmentData = [
+        {
+            serialNumber: '12345',
+            name: 'Laptop',
+            acquisitionDate: '2022-01-15',
+            status: 'En uso',
+            department: 'IT',
+            assignee: 'Juan Pérez'
+        },
+        {
+            serialNumber: '67890',
+            name: 'Proyector',
+            acquisitionDate: '2021-11-25',
+            status: 'Disponible',
+            department: 'Ventas',
+            assignee: ''
+        }
+    ];
+
+    equipmentData.forEach(equipment => {
+        const row = equipmentTable.insertRow();
+        row.innerHTML = `
+            <td>${equipment.serialNumber}</td>
+            <td>${equipment.name}</td>
+            <td>${equipment.acquisitionDate}</td>
+            <td>${equipment.status}</td>
+            <td>${equipment.department}</td>
+            <td>${equipment.assignee}</td>
+            <td>
+                <button onclick="editEquipment('${equipment.serialNumber}')">Editar</button>
+            </td>
+        `;
+    });
+
+    // Función para abrir el modal y cargar los datos del equipo en el formulario
+    window.editEquipment = function(serialNumber) {
+        const equipment = equipmentData.find(eq => eq.serialNumber === serialNumber);
+        if (equipment) {
+            editForm.editSerialNumber.value = equipment.serialNumber;
+            editForm.editEquipmentName.value = equipment.name;
+            editForm.editAcquisitionDate.value = equipment.acquisitionDate;
+            editForm.editStatus.value = equipment.status;
+            editForm.editDepartment.value = equipment.department;
+            editForm.editAssignee.value = equipment.assignee;
+            editModal.style.display = 'block';
         }
     };
 
-    const updateStats = () => {
-        // Add any stats update logic if needed
+    // Función para manejar la barra lateral en pantallas pequeñas
+    window.toggleSidebar = function() {
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar.style.display === 'block') {
+            sidebar.style.display = 'none';
+        } else {
+            sidebar.style.display = 'block';
+        }
     };
 
-    renderTable();
+    // Cerrar la barra lateral si se hace clic fuera de ella
+    window.onclick = (event) => {
+        const sidebar = document.getElementById('sidebar');
+        if (event.target !== sidebar && !sidebar.contains(event.target) && event.target.className !== 'fas fa-bars') {
+            sidebar.style.display = 'none';
+        }
+    };
 });
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    if (sidebar.style.display === 'block') {
-        sidebar.style.display = 'none';
-    } else {
-        sidebar.style.display = 'block';
-    }
-}
