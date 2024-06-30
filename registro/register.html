@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Permite una visualización responsiva -->
+    <title>Registro de Usuarios</title> <!-- Título de la página -->
+    <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo CSS para los estilos -->
+</head>
+<body>
+    <div class="container"> <!-- Contenedor principal para centrar y estilizar el formulario -->
+        <h2>Registro de Usuarios</h2> <!-- Título del formulario de registro -->
+        <form id="registerForm"> <!-- Formulario con ID para manipulación con JavaScript -->
+            <div class="form-group"> <!-- Grupo de formulario para el nombre de usuario -->
+                <input type="text" id="newUsername" name="newUsername" placeholder="Nombre de Usuario"> <!-- Campo de entrada para el nombre de usuario -->
+                <span class="error-message" id="newUsernameError"></span> <!-- Mensaje de error para el nombre de usuario -->
+            </div>
+            <div class="form-group"> <!-- Grupo de formulario para la contraseña -->
+                <input type="password" id="newPassword" name="newPassword" placeholder="Contraseña" > <!-- Campo de entrada para la contraseña -->
+                <span class="error-message" id="newPasswordError"></span> <!-- Mensaje de error para la contraseña -->
+            </div>
+            <div class="form-group"> <!-- Grupo de formulario para confirmar la contraseña -->
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirmar Contraseña" > <!-- Campo de entrada para confirmar la contraseña -->
+                <span class="error-message" id="confirmPasswordError"></span> <!-- Mensaje de error para confirmar la contraseña -->
+            </div>
+            <div class="form-group"> <!-- Grupo de formulario para el correo electrónico -->
+                <input type="email" id="email" name="email" placeholder="Correo Electrónico" > <!-- Campo de entrada para el correo electrónico -->
+                <span class="error-message" id="emailError"></span> <!-- Mensaje de error para el correo electrónico -->
+            </div>
+            
+            <div class="form-group"> <!-- Grupo de formulario para la selección del rol -->
+                <label for="role">Rol:</label> <!-- Etiqueta para la selección del rol -->
+                <select id="role" name="role" > <!-- Menú desplegable para seleccionar el rol -->
+                    <option value="">Seleccione un rol</option> <!-- Opción predeterminada -->
+                    <option value="admin">Administrador</option> <!-- Opción para rol de Administrador -->
+                    <option value="user">Usuario</option> <!-- Opción para rol de Usuario -->
+                </select>
+                <span class="error-message" id="roleError"></span> <!-- Mensaje de error para la selección del rol -->
+            </div>
+            <button type="submit">Registrar Usuario</button> <!-- Botón para enviar el formulario -->
+            <a href="../login/login.html"><input class="boton1" value="Iniciar Sesión"></a>
+            
+        </form>
+        <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p> <!-- Nota de términos y privacidad con enlace -->
+    </div>
+    <script src="register.js"></script> <!-- Enlace al archivo JavaScript para la validación del formulario -->
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software de Gestión de Inventario de Equipos Informáticos - Uleam</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../img/logo-uleam.jpg" alt="Logo Uleam">
+        </div>
+        <nav>
+            <a href='../busqueda/search.html'><i class="fas fa-search"></i><b>Buscar</b></a>
+            <a href='../manage_eqp/manage_equipment.html'><i class="fas fa-tasks"></i><b>Agregar Equipos</b></a>
+            <a href='../manage_gst/manage_gestion.html'><i class="fas fa-tasks"></i><b>Gestionar Equipos</b></a>
+            <div class="sidebar-icon" onclick="toggleSidebar()"><b>☰</b></div>
+        </nav>
+    </header>
+    <aside id="sidebar" class="sidebar">
+        <div class="close-btn" onclick="toggleSidebar()">×</div>
+        <div class="user-info">
+            <p>Nombre Apellido</p>
+            <p>correo@ejemplo.com</p>
+        </div>
+        <hr>
+        <a href='../login/login.html'>Salir</a>
+        <hr>
+    </aside>
+   
+    <main>
+        <div class="cards-container">
+            <section class="card animated" id="totalEquiposCard">
+                <h3>Total de Equipos</h3>
+                <p id="totalEquipos">0</p>
+            </section>
+            <section class="card animated" id="equiposActivosCard">
+                <h3>Equipos Activos</h3>
+                <p id="equiposActivos">0</p>
+            </section>
+            <section class="card animated" id="equiposMantenimientoCard">
+                <h3>Equipos en Mantenimiento</h3>
+                <p id="equiposMantenimiento">0</p>
+            </section>
+            <section class="card animated" id="recentlyAddedCard" onclick="toggleFullList('recentlyAdded')">
+                <h3>Equipos Recientemente Añadidos</h3>
+                <div id="recentlyAdded" class="list-container"></div>
+            </section>
+            <section class="card animated" id="maintenanceCard" onclick="toggleFullList('maintenance')">
+                <h3>Equipos en Mantenimiento</h3>
+                <div id="maintenance" class="list-container"></div>
+            </section>
+            <section class="card animated" id="oldestCard" onclick="toggleFullList('oldest')">
+                <h3>Equipos Más Antiguos</h3>
+                <div id="oldest" class="list-container"></div>
+            </section>
+            
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <div id="modalContent"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <nav class="footer-nav">
+            <a href="politica_privacidad.html">Política de Privacidad</a>
+            <a href="terminos_condiciones.html">Términos y Condiciones</a>
+            <a href="politica_cookies.html">Política de Cookies</a>
+        </nav>
+        <div class="contacto">
+            <p>Dirección: Av. 2 de Marzo y Av. Universitaria</p>
+            <p>Email: info@uleam.edu.ec</p>
+        </div>
+    </footer>
+    <script defer src="script.js"></script>
+</body>
+</html>

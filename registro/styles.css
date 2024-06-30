@@ -1,0 +1,105 @@
+/* General Styles */
+body {
+    background-image: url('../img/fondo.jpg'); /* Establece una imagen de fondo */
+    background-size: cover; /* Asegura que la imagen de fondo cubra toda la pantalla */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Cambia la fuente predeterminada */
+    background-color: #f0f0f0; /* Color de fondo en caso de que la imagen no se cargue */
+    margin: 0; /* Elimina el margen exterior */
+    padding: 0; /* Elimina el padding exterior */
+    display: flex; /* Utiliza el modelo de caja flexible */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Establece la altura al 100% de la ventana gráfica */
+    overflow: hidden; /* Oculta las barras de desplazamiento */
+}
+
+/* Container Styles */
+.container {
+    width: 400px; /* Ancho del contenedor */
+    padding: 30px; /* Padding interior */
+    background: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra del contenedor */
+    text-align: center; /* Centra el texto dentro del contenedor */
+}
+
+/* Title Styles */
+h2 {
+    font-size: 24px; /* Tamaño de fuente */
+    margin-bottom: 20px; /* Margen inferior */
+    color: #333; /* Color del texto */
+    text-transform: uppercase; /* Transforma el texto a mayúsculas */
+}
+
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 15px; /* Margen inferior */
+}
+
+.error-message {
+    color: red; /* Color del texto */
+    font-size: 12px; /* Tamaño de la fuente */
+}
+
+/* Input Styles */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: calc(100% - 20px); /* Ancho total menos el padding */
+    padding: 10px; /* Padding interior */
+    margin: 10px auto; /* Margen superior e inferior */
+    box-sizing: border-box; /* Incluye el padding y el borde en el tamaño total */
+    font-size: 14px; /* Tamaño de la fuente */
+    border: 1px solid #ccc; /* Borde delgado */
+    border-radius: 5px; /* Bordes redondeados */
+    display: block; /* Display en bloque */
+    background: rgba(255, 255, 255, 0.6); /* Fondo blanco semi-transparente */
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder {
+    color: #888; /* Color del placeholder */
+}
+
+/* Button Styles */
+button {
+    width: calc(100% - 20px); /* Ancho total menos el padding */
+    padding: 10px; /* Padding interior */
+    background-color: #007bff; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero */
+    margin: 10px auto; /* Margen superior e inferior */
+    font-size: 16px; /* Tamaño de la fuente */
+    text-transform: uppercase; /* Transforma el texto a mayúsculas */
+    display: block; /* Display en bloque */
+    transition: background-color 0.3s ease; /* Transición para el cambio de color */
+}
+
+button:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el ratón */
+}
+
+/* Checkbox and Link Styles */
+label {
+    color: #555; /* Color del texto */
+    font-size: 14px; /* Tamaño de la fuente */
+}
+
+.psw {
+    display: block; /* Display en bloque */
+    margin-top: 10px; /* Margen superior */
+    font-size: 14px; /* Tamaño de la fuente */
+    color: #007bff; /* Color del enlace */
+}
+
+.psw a {
+    color: #007bff; /* Color del enlace */
+    text-decoration: none; /* Sin subrayado */
+}
+
+.psw a:hover {
+    text-decoration: underline; /* Subrayado al pasar el ratón */
+}

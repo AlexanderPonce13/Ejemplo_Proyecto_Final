@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Equipos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img class="logo-img" src="../img/logo-uleam.jpg" alt="Logo Uleam">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../panel/dashboard.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="../busqueda/search.html"><i class="fas fa-search"></i> Buscar</a></li>
+                <li><a href="../manage_gst/manage_gestion.html"><i class="fas fa-tasks"></i> Gestionar Equipos</a></li>
+                <li class="sidebar-icon" onclick="toggleSidebar()"><i class="fas fa-bars"></i></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Gestión de Equipos</h2>
+            <form id="equipmentForm">
+                <div class="form-group">
+                    <label for="serialNumber">Número de Serie:</label>
+                    <input type="text" id="serialNumber" name="serialNumber" pattern="\d+" title="Ingrese solo números" required>
+                    <span class="error-message" id="serialNumberError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="equipmentName">Nombre del Equipo:</label>
+                    <input type="text" id="equipmentName" name="equipmentName" pattern="[A-Za-z0-9 ]+" title="Ingrese solo letras y números" required>
+                    <span class="error-message" id="equipmentNameError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="acquisitionDate">Fecha de Adquisición:</label>
+                    <input type="date" id="acquisitionDate" name="acquisitionDate" required>
+                    <span class="error-message" id="acquisitionDateError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="status">Estado:</label>
+                    <select id="status" name="status" required>
+                        <option value="">Seleccione un estado</option>
+                        <option value="activo">Activo</option>
+                        <option value="mantenimiento">En Mantenimiento</option>
+                        <option value="baja">Dado de Baja</option>
+                    </select>
+                    <span class="error-message" id="statusError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="department">Departamento:</label>
+                    <input type="text" id="department" name="department" pattern="[A-Za-z0-9 ]+" title="Ingrese solo letras y números" required>
+                    <span class="error-message" id="departmentError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="assignee">Asignar a:</label>
+                    <input type="text" id="assignee" name="assignee" pattern="[A-Za-z ]+" title="Ingrese solo letras" required>
+                    <span class="error-message" id="assigneeError"></span>
+                </div>
+                <button type="submit">Agregar Equipo</button>
+            </form>
+        </div>
+    </main>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="close-btn" onclick="toggleSidebar()">×</div>
+        <div class="user-info">
+            <p>Nombre Apellido</p>
+            <p>correo@ejemplo.com</p>
+        </div>
+        <hr>
+        <a href="../login/login.html">Salir</a>
+        <hr>
+    </aside>
+
+    <script src="script.js"></script>
+</body>
+</html>
